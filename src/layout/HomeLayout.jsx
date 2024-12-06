@@ -2,13 +2,15 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { ThemeProvider } from "../context/ThemeContext";
 
 const HomeLayout = () => {
   return (
-    <div className="font-inter flex flex-col min-h-screen overflow-hidden">
+    <ThemeProvider>
+      <div className="font-inter flex flex-col min-h-screen overflow-hidden">
       {/* Navbar */}
       <header className="fixed top-0 w-full z-10">
-        <NavBar></NavBar>
+      <NavBar></NavBar>
       </header>
 
       {/* Main Content Area */}
@@ -21,6 +23,7 @@ const HomeLayout = () => {
         <Footer></Footer>
       </footer>
     </div>
+    </ThemeProvider>
   );
 };
 

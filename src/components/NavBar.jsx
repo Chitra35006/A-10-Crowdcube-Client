@@ -3,18 +3,22 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/ButterFly.png";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
+import { useTheme } from "../context/ThemeContext";
+
 
 const NavBar = () => {
-  const [theme, setTheme] = useState("light");
+  // const [theme, setTheme] = useState("light");
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+  // useEffect(() => {
+  //   document.documentElement.setAttribute("data-theme", theme);
+  // }, [theme]);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-  };
+  // const toggleTheme = () => {
+  //   const newTheme = theme === "dark" ? "light" : "dark";
+  //   setTheme(newTheme);
+  // };
+  const { theme, toggleTheme } = useTheme();
+  console.log(theme);
 
   const links = (
     <>
@@ -102,7 +106,7 @@ const NavBar = () => {
   );
   return (
     <div className="fixed top-0 left-0 w-full bg-rose-200 shadow-md z-50">
-      <div className={`navbar ${
+      <div className={`navbar px-4 ${
         theme === "dark" ? "bg-slate-700" : "bg-gradient-to-r from-violet-200 via-rose-200 to-violet-200"
       }`}>
         <div className="navbar-start">
@@ -150,11 +154,11 @@ const NavBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end gap-2">
         <button onClick={toggleTheme} className="btn btn-ghost rounded-full">
             {theme === "dark" ? <FaSun /> : <FaMoon />}
           </button>
-
+        <button className=" btn bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 ">Login</button>
         </div>
       </div>
     </div>
