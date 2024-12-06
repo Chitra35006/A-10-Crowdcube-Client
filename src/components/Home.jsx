@@ -1,9 +1,18 @@
 import React from 'react';
+import Banner from './Banner';
+import Services from './Services';
 
 const Home = () => {
     return (
         <div>
-            <h2 className='font-lato text-3xl  text-violet-400 font-bold'>Hello CrowdCube</h2>
+            {/* Banner */}
+            <section>
+                <Banner></Banner>
+            </section>
+            {/* Services */}
+            <section>
+                <Services></Services>
+            </section>
         </div>
     );
 };

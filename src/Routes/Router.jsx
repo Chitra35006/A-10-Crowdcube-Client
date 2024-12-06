@@ -6,6 +6,10 @@ import {
 import HomeLayout from '../layout/HomeLayout';
 import Home from '../components/Home';
 import Four04Page from '../components/Four04Page';
+import AllCampaign from '../components/AllCampaign';
+import AddACampaign from '../components/AddACampaign';
+import MyCampaign from '../components/MyCampaign';
+import MyDonations from '../components/MyDonations';
 
   const Router = createBrowserRouter([
     {
@@ -16,6 +20,22 @@ import Four04Page from '../components/Four04Page';
                 path:'/',
                 element: <Home></Home>
             },
+            {
+                path:'/allCampaign',
+                element:<AllCampaign></AllCampaign>
+            },
+            {
+                path:'/addAnewCampaign',
+                element:<AddACampaign></AddACampaign>
+            },
+            {
+                path:'/myCampaign',
+                element:<MyCampaign></MyCampaign>
+            },
+            {
+                path:'/myDonations',
+                element:<MyDonations></MyDonations>
+            }
         ]
     },
     {

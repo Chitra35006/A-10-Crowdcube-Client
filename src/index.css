@@ -10,3 +10,9 @@
   min-height: 100vh;
 }
  */
+ a.active{
+  background-color: violet;
+  font-weight: bold;
+  border-bottom: 8px solid rgb(166, 190, 241);;
+}
+
