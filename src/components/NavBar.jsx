@@ -158,7 +158,9 @@ const NavBar = () => {
         <button onClick={toggleTheme} className="btn btn-ghost rounded-full">
             {theme === "dark" ? <FaSun /> : <FaMoon />}
           </button>
+        <Link to="/signin">
         <button className=" btn bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 ">Login</button>
+        </Link>
         </div>
       </div>
     </div>

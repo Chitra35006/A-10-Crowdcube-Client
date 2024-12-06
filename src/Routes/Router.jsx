@@ -10,6 +10,8 @@ import AllCampaign from '../components/AllCampaign';
 import AddACampaign from '../components/AddACampaign';
 import MyCampaign from '../components/MyCampaign';
 import MyDonations from '../components/MyDonations';
+import SignIn from '../Pages/SignIn';
+import SignUp from '../Pages/SignUp';
 
   const Router = createBrowserRouter([
     {
@@ -35,6 +37,14 @@ import MyDonations from '../components/MyDonations';
             {
                 path:'/myDonations',
                 element:<MyDonations></MyDonations>
+            },
+            {
+                path:'/signin',
+                element: <SignIn></SignIn>
+            },
+            {
+                path:'/signup',
+                element: <SignUp></SignUp>
             }
         ]
     },
