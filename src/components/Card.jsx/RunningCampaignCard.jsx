@@ -1,29 +1,33 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdCampaign } from "react-icons/md";
 import { RiCalendarCloseFill } from "react-icons/ri";
 import { FaCalendarAlt } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
 import { MdOutgoingMail } from "react-icons/md";
-import { useTheme } from '../context/ThemeContext';
+import { Link } from 'react-router-dom';
+import { useTheme } from '../../context/ThemeContext';
 
-
-const CampDetailsPage = () => {
-
-const singleData = useLoaderData();
-const {email,
-    name,
-    campaign,
-    startDate,
-    endDate,
-    photo,
-    donation,
-    title,
-    description} = singleData;
+const RunningCampaignCard = ({rCampaign}) => {
     const {theme} = useTheme();
+   
+    const {email,
+        name,
+        campaign,
+        startDate,
+        endDate,
+        photo,
+        donation,
+        title,
+        description} = rCampaign;
+
+        const limitText = (text, maxLength) => {
+            return text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+          };
+       
     return (
-      <div className={`max-w-md mx-auto mt-10  shadow-lg rounded-lg overflow-hidden  ${theme === "light" ? "bg-slate-100" : "bg-slate-800"}`}>
+      <div className='col-span-4'>
+          <div className={`max-w-md mx-auto mt-10  shadow-lg rounded-lg overflow-hidden  ${theme === "light" ? "bg-slate-100" : "bg-slate-800"}`}>
         <img
           className="w-full h-48 object-cover"
           src={photo}
@@ -33,7 +37,7 @@ const {email,
           <div className="flex items-center justify-between mb-4">
             <h2 className={`text-xl font-bold ${theme === "light" ? "text-slate-800" : "text-rose-300"}`}>{title}</h2>
           </div>
-          <p className={`text-sm ${theme === "light" ? "text-gray-700" : "text-gray-100"}`}>{description}</p>
+          <p className={`text-sm ${theme === "light" ? "text-gray-700" : "text-gray-100"}`}>{limitText(description,200)}</p>
           <div className='flex flex-row gap-8 items-center justify-evenly'>
            {/* First Col */}
           <div className="mt-4 space-y-2">
@@ -45,10 +49,6 @@ const {email,
             <FaRegUserCircle className={`${theme === "light" ? "text-violet-900" : "text-violet-300"}`}/>
             <p className={`text-sm ${theme === "light" ? "text-gray-700" : "text-gray-300"}`}>Organizer: <span className="font-semibold">{name}</span></p>
             </div>
-            <div className='flex items-center space-x-2'>
-          <MdOutgoingMail className={`${theme === "light" ? "text-violet-900" : "text-violet-300"}`} />
-          <p className={`text-sm ${theme === "light" ? "text-gray-700" : "text-gray-300"}`}>Email: <a href={`mailto:${campaign.email}`} className="text-blue-500 underline">{email}</a></p>
-          </div>
              
           </div>
           {/* Second Col */}
@@ -56,10 +56,6 @@ const {email,
            <div className='flex items-center space-x-2'>
           <GiMoneyStack className={`${theme === "light" ? "text-red-900" : "text-red-300"}`}  />
           <p className={`text-sm ${theme === "light" ? "text-gray-700" : "text-gray-300"}`}>Donation Goal: <span className="font-semibold">${donation}</span></p>
-          </div>
-          <div className='flex items-center space-x-2'>
-          <FaCalendarAlt className={`${theme === "light" ? "text-red-900" : "text-red-300"}`} />
-          <p className={`text-sm ${theme === "light" ? "text-gray-700" : "text-gray-300"}`}>Start Date: <span className="font-semibold">{startDate}</span></p>
           </div>
              
              <div className='flex items-center space-x-2'>
@@ -70,12 +66,13 @@ const {email,
           </div>
         </div>
         <div className=''>
-          <Link>
-          <button className='border-none btn w-full bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 '>Donate Now</button>
+          <Link to={`/allCampaign/${rCampaign._id}`}>
+          <button className='border-none btn w-full bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 '>See More</button>
           </Link>
         </div>
+      </div>
       </div>
     );
 };
 
-export default CampDetailsPage;
+export default RunningCampaignCard;

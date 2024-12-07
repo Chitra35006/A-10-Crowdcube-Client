@@ -16,7 +16,7 @@ const SignUp = () => {
     }
     return (
         <div className="min-h-screen flex justify-center items-center">
-        <div className={`card border-l-4 border-violet-500 w-full max-w-lg shrink-0 shadow-2xl p-10 ${theme === "light" ? "bg-pink-50" : "bg-gray-800"} ${theme === "light" ? "border-violet-500" : "border-rose-300"}`}>
+        <div className={`card border-l-4 border-violet-500 w-full max-w-lg shrink-0 shadow-2xl p-10 ${theme === "light" ? "bg-slate-100" : "bg-gray-800"} ${theme === "light" ? "border-violet-500" : "border-rose-300"}`}>
           <h2 className={`font-semibold text-2xl text-center mt-5 ${theme === "light" ? "text-indigo-900" : "text-rose-200"} `}>
             Register Your Account
           </h2>

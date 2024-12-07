@@ -13,7 +13,7 @@ import MyDonations from '../components/MyDonations';
 import SignIn from '../Pages/SignIn';
 import SignUp from '../Pages/SignUp';
 import CampDetailsPage from '../Pages/CampDetailsPage';
-import { Result } from 'postcss';
+
 
   const Router = createBrowserRouter([
     {
@@ -22,7 +22,8 @@ import { Result } from 'postcss';
         children:[
             {
                 path:'/',
-                element: <Home></Home>
+                element: <Home></Home>,
+                loader:()=>fetch('http://localhost:5000/runnningCampaign')
             },
             {
                 path:'/allCampaign',
@@ -39,9 +40,6 @@ import { Result } from 'postcss';
                     console.log(singleData);
                     return(singleData);
                 }
-
-            },
-            {
 
             },
             {

@@ -64,7 +64,7 @@ const[title, setTitle] = useState("");
       </div>
       <div>
         <div className={`py-20 rounded-lg px-8 md:px-0 flex items-center justify-center ${theme === "light" ? "bg-gray-100" : "bg-gray-800"}`}>
-        <div className={`p-8 rounded-lg shadow-md w-full max-w-2xl ${theme === "light" ? "bg-pink-50" : "bg-gray-900"}`}>
+        <div className={`p-8 rounded-lg shadow-md w-full max-w-2xl ${theme === "light" ? "bg-slate-100" : "bg-gray-900"}`}>
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* campaignTitle */}
