@@ -1,24 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from 'react';
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/ButterFly.png";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import { useTheme } from "../context/ThemeContext";
+import { AuthContext } from '../context/AuthProvider';
 
 
 const NavBar = () => {
-  // const [theme, setTheme] = useState("light");
-
-  // useEffect(() => {
-  //   document.documentElement.setAttribute("data-theme", theme);
-  // }, [theme]);
-
-  // const toggleTheme = () => {
-  //   const newTheme = theme === "dark" ? "light" : "dark";
-  //   setTheme(newTheme);
-  // };
+ 
   const { theme, toggleTheme } = useTheme();
-  console.log(theme);
+
+  const{user,logOut} = useContext(AuthContext)
+ 
+  
+
+  // console.log(theme);
 
   const links = (
     <>
@@ -105,7 +102,7 @@ const NavBar = () => {
     </>
   );
   return (
-    <div className="fixed top-0 left-0 w-full bg-rose-200 shadow-md z-50">
+    <div className="fixed  top-0 left-0 w-full bg-rose-200 shadow-md z-50">
       <div className={`navbar px-4 ${
         theme === "dark" ? "bg-slate-700" : "bg-gradient-to-r from-violet-200 via-rose-200 to-violet-200"
       }`}>
@@ -158,9 +155,13 @@ const NavBar = () => {
         <button onClick={toggleTheme} className="btn btn-ghost rounded-full">
             {theme === "dark" ? <FaSun /> : <FaMoon />}
           </button>
-        <Link to="/signin">
-        <button className=" btn bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 ">Login</button>
-        </Link>
+        <div>
+          {
+            user && user?.email? <button onClick={logOut} className='btn border-none bg-gradient-to-r from-red-300 to-rose-400 text-indigo-900 hover:text-rose-500  font-bold'>Log Out</button> : <Link to="/signin">
+            <button className="border-none btn bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 ">Login</button>
+            </Link>
+          }
+        </div>
         </div>
       </div>
     </div>
