@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTheme } from "../context/ThemeContext";
+import Swal from "sweetalert2";
 
 const AddACampaign = () => {
 
@@ -20,24 +21,43 @@ const[title, setTitle] = useState("");
     e.preventDefault();
 
     // Example payload for database submission
-    const data = {
+    const campaignData = {
       email,
       name,
       campaign,
       startDate,
       endDate,
-      campaign,
       photo,
       donation,
       title,
       description
     };
-    console.log(data);
+    console.log(campaignData);
+    //send data to server
+    fetch('http://localhost:5000/addCampaign',{
+        method: "POST",
+        headers:{
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(campaignData)
+    })
+    .then(res=> res.json())
+    .then(data =>{
+        
+        if(data.insertedId){
+            Swal.fire({
+                title: 'Success',
+                text: 'Campaign Added Successfully',
+                icon: 'success',
+                confirmButtonText: 'OK'
+              })
+        }
+    })
 }
   return (
     <div>
       <div className="text-center lg:w-2/5 md:w-[350px] mx-auto py-10">
-        <h1 className="md:text-2xl text-xl font-bold ">Add Your Campaign</h1>
+        <h1 className={`md:text-2xl text-xl font-bold ${theme === "light" ? "text-indigo-900" : "text-rose-200"}  `}>Add Your Campaign</h1>
         <p className="">
           You Need help? For You or for another needy people  You can add campaign Here.
         </p>

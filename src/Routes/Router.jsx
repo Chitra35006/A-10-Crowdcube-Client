@@ -24,7 +24,8 @@ import SignUp from '../Pages/SignUp';
             },
             {
                 path:'/allCampaign',
-                element:<AllCampaign></AllCampaign>
+                element:<AllCampaign></AllCampaign>,
+                loader: ()=> fetch('http://localhost:5000/addCampaign')
             },
             {
                 path:'/addAnewCampaign',
