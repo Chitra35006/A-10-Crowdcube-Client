@@ -4,13 +4,23 @@ import { useTheme } from '../context/ThemeContext';
 
 const SignUp = () => {
     const {theme} = useTheme();
+    const handleSignUp =(e) =>{
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const email = form.email.value;
+      const photoUrl = form.photoUrl.value;
+      const password = form.password.value;
+      const user ={name,email,photoUrl,password};
+      console.log(user);
+    }
     return (
         <div className="min-h-screen flex justify-center items-center">
         <div className={`card border-l-4 border-violet-500 w-full max-w-lg shrink-0 shadow-2xl p-10 ${theme === "light" ? "bg-pink-50" : "bg-gray-800"} ${theme === "light" ? "border-violet-500" : "border-rose-300"}`}>
           <h2 className={`font-semibold text-2xl text-center mt-5 ${theme === "light" ? "text-indigo-900" : "text-rose-200"} `}>
             Register Your Account
           </h2>
-          <form className="card-body">
+          <form onSubmit={handleSignUp} className="card-body">
 
             {/* Name */}
           <div className="form-control">
@@ -19,6 +29,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
+                name="name"
                 placeholder="Enter Your Name"
                 className="input input-bordered"
                 required
@@ -31,6 +42,7 @@ const SignUp = () => {
               </label>
               <input
                 type="text"
+                name="photoUrl"
                 placeholder="Enter Your Photo UrL"
                 className="input input-bordered"
                 required
@@ -43,6 +55,7 @@ const SignUp = () => {
               </label>
               <input
                 type="email"
+                name="email"
                 placeholder="email"
                 className="input input-bordered"
                 required
@@ -55,6 +68,7 @@ const SignUp = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
