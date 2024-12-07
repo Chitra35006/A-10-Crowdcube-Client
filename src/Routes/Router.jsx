@@ -12,6 +12,8 @@ import MyCampaign from '../components/MyCampaign';
 import MyDonations from '../components/MyDonations';
 import SignIn from '../Pages/SignIn';
 import SignUp from '../Pages/SignUp';
+import CampDetailsPage from '../Pages/CampDetailsPage';
+import { Result } from 'postcss';
 
   const Router = createBrowserRouter([
     {
@@ -26,6 +28,21 @@ import SignUp from '../Pages/SignUp';
                 path:'/allCampaign',
                 element:<AllCampaign></AllCampaign>,
                 loader: ()=> fetch('http://localhost:5000/addCampaign')
+            },
+            {   
+                path:'/allCampaign/:id',
+                element:<CampDetailsPage></CampDetailsPage>,
+                loader: async({params}) => {
+                    const res = await fetch('http://localhost:5000/addCampaign')
+                    const data = await res.json();
+                    const singleData = data.find((d) => d._id == `${params.id}`)
+                    console.log(singleData);
+                    return(singleData);
+                }
+
+            },
+            {
+
             },
             {
                 path:'/addAnewCampaign',

@@ -32,7 +32,7 @@ const AllCampaginTable = ({ campaign1, idx }) => {
         </td>
         <td>
             <div>
-                <Link to={`/addCampaign/${campaign1._id}`}><button className="btn bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500  ">See More</button></Link>
+                <Link to={`/allCampaign/${campaign1._id}`}><button className="btn bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500  ">See More</button></Link>
             </div>
         </td>
     </tr>
