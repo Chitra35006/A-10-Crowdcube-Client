@@ -66,6 +66,8 @@ const SignUp = () => {
           setErrorMessage("An error occurred. Please try again.");
         }
       })
+
+      
       
     }
     return (
