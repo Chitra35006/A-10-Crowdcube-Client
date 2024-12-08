@@ -14,6 +14,7 @@ import SignIn from '../Pages/SignIn';
 import SignUp from '../Pages/SignUp';
 import CampDetailsPage from '../Pages/CampDetailsPage';
 import PrivateRoute from './PrivateRoute';
+import UpdateCamp from '../components/UpdateCamp/UpdateCamp';
 
 
   const Router = createBrowserRouter([
@@ -68,6 +69,11 @@ import PrivateRoute from './PrivateRoute';
             {
                 path:'/signup',
                 element: <SignUp></SignUp>
+            },
+            {
+                path:'/update/:id',
+                element:<PrivateRoute><UpdateCamp></UpdateCamp></PrivateRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/camping/${params.id}`)
             }
         ]
     },

@@ -73,7 +73,7 @@ const Mycampign = ({ camp, idx, camps, setcamp, refreshData }) => {
                 <td>
                     <div className="flex gap-4">
                         <button className="bg-gradient-to-r font-bold from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 px-4 py-2 rounded">
-                            <Link to={`/update/1`}>UPDATE</Link>
+                            <Link to={`/update/${_id}`}>UPDATE</Link>
                         </button>
                         <button onClick={() => handleDelete(_id)} className="font-bold bg-gradient-to-r from-red-300 to-rose-400 text-red-900 hover:text-rose-500 px-4 py-2 rounded">
                             DELETE
