@@ -11,7 +11,7 @@ const MyCampaign = () => {
     // Function to fetch campaigns
     const fetchCampaigns = () => {
         if (user?.email) {
-            fetch(`http://localhost:5000/campaigns?email=${user?.email}`)
+            fetch(`https://a-10-crowdcube-server.vercel.app/campaigns?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => setcamp(data))
                 .catch(err => console.error("Error fetching campaigns:", err));

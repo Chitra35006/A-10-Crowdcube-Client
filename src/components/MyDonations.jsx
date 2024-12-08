@@ -11,7 +11,7 @@ const MyDonations = () => {
 
     const fetchDonation = () => {
         if (user?.email) {
-            fetch(`http://localhost:5000/myDonation?email=${user?.email}`)
+            fetch(`https://a-10-crowdcube-server.vercel.app/myDonation?email=${user?.email}`)
                 .then(res => res.json())
                 .then(data => setdonate(data))
                 .catch(err => console.error("Error fetching donations:", err));

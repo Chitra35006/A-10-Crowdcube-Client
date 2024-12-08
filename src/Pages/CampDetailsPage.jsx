@@ -58,7 +58,7 @@ const {email,
         };
     
         // Send data to server
-        fetch("http://localhost:5000/donate", {
+        fetch("https://a-10-crowdcube-server.vercel.app/donate", {
           method: "POST",
           headers: {
             'content-type': 'application/json'

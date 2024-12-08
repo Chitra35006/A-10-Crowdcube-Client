@@ -25,18 +25,18 @@ import UpdateCamp from '../components/UpdateCamp/UpdateCamp';
             {
                 path:'/',
                 element: <Home></Home>,
-                loader:()=>fetch('http://localhost:5000/runnningCampaign')
+                loader:()=>fetch('https://a-10-crowdcube-server.vercel.app/runnningCampaign')
             },
             {
                 path:'/allCampaign',
                 element:<AllCampaign></AllCampaign>,
-                loader: ()=> fetch('http://localhost:5000/addCampaign')
+                loader: ()=> fetch('https://a-10-crowdcube-server.vercel.app/addCampaign')
             },
             {   
                 path:'/allCampaign/:id',
                 element:<PrivateRoute><CampDetailsPage></CampDetailsPage></PrivateRoute>,
                 loader: async({params}) => {
-                    const res = await fetch('http://localhost:5000/addCampaign')
+                    const res = await fetch('https://a-10-crowdcube-server.vercel.app/addCampaign')
                     const data = await res.json();
                     const singleData = data.find((d) => d._id == `${params.id}`)
                     console.log(singleData);
@@ -73,7 +73,7 @@ import UpdateCamp from '../components/UpdateCamp/UpdateCamp';
             {
                 path:'/update/:id',
                 element:<PrivateRoute><UpdateCamp></UpdateCamp></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/camping/${params.id}`)
+                loader: ({params}) => fetch(`https://a-10-crowdcube-server.vercel.app/camping/${params.id}`)
             }
         ]
     },

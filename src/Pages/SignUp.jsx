@@ -69,7 +69,7 @@ const SignUp = () => {
         console.log(user);
 
         //send new user to database
-        fetch('http://localhost:5000/users',{
+        fetch('https://a-10-crowdcube-server.vercel.app/users',{
           method:'POST',
           headers:{
             'content-type':'application/json'

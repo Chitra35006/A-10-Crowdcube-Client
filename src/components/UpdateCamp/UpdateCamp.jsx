@@ -45,7 +45,7 @@ const UpdateCamp = () => {
       description,
     };
     console.log(data);
-    fetch(`http://localhost:5000/camping/${id}`, {
+    fetch(`https://a-10-crowdcube-server.vercel.app/camping/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json" ,
