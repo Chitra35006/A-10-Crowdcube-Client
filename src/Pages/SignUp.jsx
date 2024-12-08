@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { AuthContext } from '../context/AuthProvider';
 import Swal from 'sweetalert2';
@@ -14,6 +14,8 @@ const SignUp = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
     const [showPassword,setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
 
 
 

@@ -1,14 +1,20 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { FaGoogle } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify"; // Import toast functions
 import "react-toastify/dist/ReactToastify.css";
 import { AuthContext } from '../context/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SignIn = () => {
 
    const{signInUser, setUser} = useContext(AuthContext);
+
+   const location = useLocation();
+   console.log(location);
+
+   const navigate = useNavigate();
 
    const [errorMessage, setErrorMessage] = useState(null);
 
@@ -28,7 +34,18 @@ const SignIn = () => {
         .then(result =>{
           const user = result.user;
           setUser(user);
-          toast.success("Login Successfully");
+          if(result.user?.uid){
+            Swal.fire({
+              icon: "success",
+              title: "Login Successful!",
+              text: `Welcome, ${user.email}!`,
+              confirmButtonText: "OK",
+            }).then(()=>{
+              const from = location.state?.from?.pathname || "/";
+                navigate(from, { replace: true });
+            })
+          }
+          
         })
         .catch((err)=>{
           const errorCode = err.code;

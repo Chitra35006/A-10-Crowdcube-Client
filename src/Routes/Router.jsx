@@ -13,6 +13,7 @@ import MyDonations from '../components/MyDonations';
 import SignIn from '../Pages/SignIn';
 import SignUp from '../Pages/SignUp';
 import CampDetailsPage from '../Pages/CampDetailsPage';
+import PrivateRoute from './PrivateRoute';
 
 
   const Router = createBrowserRouter([
@@ -32,7 +33,7 @@ import CampDetailsPage from '../Pages/CampDetailsPage';
             },
             {   
                 path:'/allCampaign/:id',
-                element:<CampDetailsPage></CampDetailsPage>,
+                element:<PrivateRoute><CampDetailsPage></CampDetailsPage></PrivateRoute>,
                 loader: async({params}) => {
                     const res = await fetch('http://localhost:5000/addCampaign')
                     const data = await res.json();
@@ -44,15 +45,21 @@ import CampDetailsPage from '../Pages/CampDetailsPage';
             },
             {
                 path:'/addAnewCampaign',
-                element:<AddACampaign></AddACampaign>
+                element:<PrivateRoute>
+                    <AddACampaign></AddACampaign>
+                </PrivateRoute>
             },
             {
                 path:'/myCampaign',
-                element:<MyCampaign></MyCampaign>
+                element:<PrivateRoute>
+                    <MyCampaign></MyCampaign>
+                </PrivateRoute>
             },
             {
                 path:'/myDonations',
-                element:<MyDonations></MyDonations>
+                element:<PrivateRoute>
+                    <MyDonations></MyDonations>
+                </PrivateRoute>
             },
             {
                 path:'/signin',
