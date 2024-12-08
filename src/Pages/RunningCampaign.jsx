@@ -7,7 +7,7 @@ const RunningCampaign = () => {
     
     return (
      <div className='mx-auto w-11/12'>
-        <h2 className='rounded-md text-2xl  p-2 font-bold w-1/4 mx-auto text-center bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500'>Running Campaign</h2>
+        <h2 className='rounded-md text-2xl  p-2 font-bold md:w-1/4 w-full mx-auto text-center bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500'>Running Campaign</h2>
         <div className='grid md:grid-cols-12 gap-4 mb-8 '>
         {
             runCampaigns.map(rCampaign => <RunningCampaignCard
