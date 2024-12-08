@@ -1,11 +1,13 @@
 import React from 'react';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
+import { useTheme } from '../context/ThemeContext';
 
 
 const Services = () => {
+  const {theme} = useTheme();
     return (
-        <div className="flex flex-col lg:flex-row min-h-screen">
+        <div className={`flex p-4 flex-col lg:flex-row min-h-screen mx-auto w-11/12 ${theme === "light" ? "bg-gray-200" : "bg-slate-700"}`}>
       {/* Left Section */}
       <div className="flex-1 bg-gradient-to-r from-violet-200 via-red-200 to-violet-200 text-white flex items-center justify-center relative">
         <div className="absolute inset-0 bg-black opacity-30"></div>

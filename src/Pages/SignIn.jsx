@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 
 const SignIn = () => {
 
-   const{signInUser, setUser} = useContext(AuthContext);
+   const{signInUser, setUser,signInWithGoogle} = useContext(AuthContext);
 
    const location = useLocation();
    console.log(location);
@@ -67,6 +67,19 @@ const SignIn = () => {
 
 
     }
+
+    //pop up
+    const handleGoogleSignIn =()=>{
+      signInWithGoogle()
+      .then((result) => {
+        console.log("User Info:", result.user);
+        navigate(location?.state?.from?.pathname || "/"); 
+      })
+      .catch((err) => {
+        console.error("Sign-in Error:", err.message);
+      });
+    }
+
     return (
         <div className={`min-h-screen flex justify-center items-center`}>
       <div className={`card border-l-4  w-full max-w-lg shrink-0 shadow-2xl p-10 ${theme === "light" ? "bg-slate-100" : "bg-gray-800"} ${theme === "light" ? "border-violet-500" : "border-rose-300"}`}>
@@ -103,7 +116,7 @@ const SignIn = () => {
               errorMessage && <p className="p-2 mt-2 font-semibold bg-red-300 text-red-700">{errorMessage}</p>
           }
         </form>
-        <button type="button" className="btn text-indigo-900 bg-indigo-200 mb-4 "><FaGoogle></FaGoogle> Login With Google</button>
+        <button onClick={handleGoogleSignIn} type="button" className="btn text-indigo-900 bg-indigo-200 mb-4 "><FaGoogle></FaGoogle> Login With Google</button>
         <p className="text-center text-gray-500 font-semibold">Don't Have a account? <Link className={`${theme === "light" ? "text-indigo-900" : "text-rose-200"}`} to="/signup">Register</Link> </p>
       </div>
     </div>

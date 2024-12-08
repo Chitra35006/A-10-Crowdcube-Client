@@ -9,7 +9,7 @@ import { FaEyeSlash } from "react-icons/fa";
 const SignUp = () => {
     const {theme} = useTheme();
 
-    const {createUser,setUser} = useContext(AuthContext);
+    const {createUser,setUser,updateUserProfile} = useContext(AuthContext);
 
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -28,6 +28,7 @@ const SignUp = () => {
       const photoUrl = form.photoUrl.value;
       const password = form.password.value;
       const user ={name,email,photoUrl,password};
+      const user2 ={name,email}
       console.log(user);
 
       //validation
@@ -57,6 +58,29 @@ const SignUp = () => {
             confirmButtonText: "OK",
           });
         }
+        //updateProfile
+        updateUserProfile({
+          displayName: name,
+          photoURL: photoUrl,}).then(()=>{
+            navigate("/");
+          }).catch(err=>{
+            console.log("ERROR",err);
+        })
+        console.log(user);
+
+        //send new user to database
+        fetch('http://localhost:5000/users',{
+          method:'POST',
+          headers:{
+            'content-type':'application/json'
+          },
+          body: JSON.stringify(user2)
+        })
+        .then(res => res.json())
+        .then(data =>{
+          console.log("User created to DB",data);
+        })
+
       })
       .catch((err)=>{
         const errorCode = err.code;
@@ -131,6 +155,7 @@ const SignUp = () => {
                 className="input input-bordered"
                 required
               />
+              <div>
               <button
               onClick={()=>setShowPassword(!showPassword)}
               className="btn btn-xs absolute right-4 top-12">
@@ -138,6 +163,7 @@ const SignUp = () => {
                   showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
                 }
               </button>
+              </div>
               {
               errorMessage && <p className="p-2 mt-2 font-semibold bg-red-300 text-red-700">{errorMessage}</p>
               }
