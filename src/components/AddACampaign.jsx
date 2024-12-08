@@ -15,6 +15,18 @@ const [description, setDescription] = useState("");
 const [campaign, setCampaign] = useState("");
 const[donation, setDonation] = useState("");
 const[title, setTitle] = useState("");
+  
+const resetForm = () => {
+  setTitle("");
+  setName("");
+  setPhoto("");
+  setDonation("");
+  setEmail("");
+  setCampaign("");
+  setStartDate("");
+  setEndDate("");
+  setDescription("");
+};
 
 
   const handleSubmit =  (e) => {
@@ -52,6 +64,7 @@ const[title, setTitle] = useState("");
                 confirmButtonText: 'OK'
               })
         }
+        resetForm();
     })
 }
   return (

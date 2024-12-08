@@ -8,7 +8,7 @@ const AllCampaign = () => {
     const{theme} = useTheme();
     return (
         <div>
-            <div className='flex flex-row mt-4'>
+            <div className='flex flex-row mt-4 w-11/12'>
             <h2 className={`text-center mx-auto w-1/4 font-bold ${theme === "light" ? "text-indigo-900" : "text-gray-300"}`}>See Our All Campaign</h2>
             <button className="btn bg-gradient-to-r border border-indigo-700 from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 ">Sort</button>
 
@@ -30,6 +30,7 @@ const AllCampaign = () => {
                     key={campaign._id}
                     idx={index}
                     campaign1={campaign}
+
                     >
                     </AllCampaginTable>))
                     
