@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
 import { FaRegUserCircle } from "react-icons/fa";
 import { MdCampaign } from "react-icons/md";
 import { RiCalendarCloseFill } from "react-icons/ri";
@@ -7,9 +7,19 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
 import { MdOutgoingMail } from "react-icons/md";
 import { useTheme } from '../context/ThemeContext';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthProvider';
+import Swal from 'sweetalert2';
+
 
 
 const CampDetailsPage = () => {
+
+  const{user} = useContext(AuthContext);
+
+  const [isLoading, setIsLoading] = useState(false);
+
+ 
 
 const singleData = useLoaderData();
 const {email,
@@ -22,6 +32,70 @@ const {email,
     title,
     description} = singleData;
     const {theme} = useTheme();
+
+    const currentDate = new Date();
+    const endDateObj = new Date(endDate);
+    const isDeadlinePassed = currentDate > endDateObj;
+
+    const handleDonateClick = () => {
+      if (isDeadlinePassed) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Deadline Passed!",
+          footer: '<a href="#">This Campaign is Not Available</a>',
+        });
+        return; // Stop further execution
+      }
+    
+      if (user) {
+        setIsLoading(true);
+        const donationData = {
+          email: user.email, // Logged-in user's email
+          campaignId: singleData._id, // Campaign ID
+          amount: singleData.donation, // Donation amount
+          title: singleData.title,
+        };
+    
+        // Send data to server
+        fetch("http://localhost:5000/donate", {
+          method: "POST",
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(donationData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setIsLoading(false); // Stop loading when done
+            if (data.insertedId) {
+              Swal.fire({
+                title: "Success",
+                text: "Donation Successful",
+                icon: "success",
+                confirmButtonText: "OK",
+              });
+            } else {
+              Swal.fire({
+                title: "Error",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((error) => {
+            setIsLoading(false); // Stop loading on error
+            Swal.fire({
+              title: "Error",
+              text: `Failed to donate: ${error.message}`,
+              icon: "error",
+            });
+          });
+      }
+    };
+    
+
+    
     return (
       <div className={`max-w-md mx-auto mt-10  shadow-lg rounded-lg overflow-hidden  ${theme === "light" ? "bg-slate-100" : "bg-slate-800"}`}>
         <img
@@ -70,9 +144,7 @@ const {email,
           </div>
         </div>
         <div className=''>
-          <Link>
-          <button className='border-none btn w-full bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 '>Donate Now</button>
-          </Link>
+          <button onClick={handleDonateClick} className='border-none btn w-full bg-gradient-to-r from-rose-300 to-violet-400 text-indigo-900 hover:text-rose-500 '>Donate Now</button>
         </div>
       </div>
     );
