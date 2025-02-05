@@ -1,10 +1,11 @@
 # Project Name: Crowd Cube
  <div align="center">
-  <img height="400" width="100%" src="https://github.com/Chitra35006/5_practice/blob/5669e4f4ffc4556f7e310a68d74f8ffa7628a26d/cc1.png" />
+  <img height="500" width="100%" src="https://github.com/Chitra35006/5_practice/blob/5669e4f4ffc4556f7e310a68d74f8ffa7628a26d/cc1.png" />
 </div>
  <div align="center">
-  <img height="400" width="100%" src="https://github.com/Chitra35006/5_practice/blob/1c7d222358cd29661acbddafc400386b03f739e0/cc2.png" />
+  <img height="500" width="100%" src="https://github.com/Chitra35006/5_practice/blob/1c7d222358cd29661acbddafc400386b03f739e0/cc2.png" />
 </div>
+
 ## :::Description:::
 A crowdfunding website is a platform where people can raise money for different projects, ideas, or 
 causes by inviting others to contribute financially. These projects can include personal needs (like 
